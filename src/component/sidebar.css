@@ -1,0 +1,58 @@
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 230px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.btn-side {
+  background-color: #ce4815;
+}
+
+.button {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.menu-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.menu-list li {
+  position: relative;
+}
+
+.menu-list li a {
+  color: #4d4b4b;
+  text-decoration: none;
+}
+
+.menu-list li:before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  height: 4px;
+  width: 0;
+  background: #f1821e;
+  transition: width 0.3s ease;
+}
+
+.menu-list li:hover:before {
+  width: 100%;
+}
+
+.menu-list .active a {
+  background-color: #007bff; /* Warna latar belakang saat item aktif */
+  color: #fff; /* Warna teks saat item aktif */
+}
+
+.menu-label {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #4d4b4b;
+}

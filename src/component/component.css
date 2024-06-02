@@ -1,0 +1,95 @@
+.navbar {
+  top: 0;
+  right: 0;
+  left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.profile-image .user {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.profile-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.username {
+  margin-left: 10px;
+  color: white;
+}
+
+.welcome {
+  margin-bottom: 0px;
+}
+
+.table {
+  font-size: 14px;
+}
+
+.button-tabel {
+  font-size: 12px;
+  color: #fff;
+}
+
+.button-detail {
+  font-size: 14px;
+  color: #fff;
+}
+
+.poin {
+  margin-bottom: 0;
+}
+
+.subpoin p {
+  margin-bottom: 0;
+}
+
+.add-lahan {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-lahan .column {
+  width: 48%;
+}
+
+.add-lahan .column .field .input {
+  width: 80%;
+}
+.field .control .input {
+  width: 40%;
+}
+
+.field .control .textarea {
+  width: 40%;
+}
+
+.add-logistik {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-logistik .column {
+  width: 48%;
+}
+
+.add-logistik .column .field .input {
+  width: 80%;
+}
+
+.add-logistik .column .field .textarea {
+  width: 80%;
+}
