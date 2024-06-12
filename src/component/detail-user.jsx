@@ -14,7 +14,7 @@ const DetailUser = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/users/${user.uuid}`
+            `/api/users/${user.uuid}`
           );
           console.log(response.data);
           setUserData(response.data);
@@ -33,50 +33,53 @@ const DetailUser = () => {
       </h2>
 
       <div className="card ps-4 pt-4 pb-4 mb-4">
-        {userData ? (
-          <span>
+      {userData ? (
+        <div className="user-details-container">
+          <div className="col-4 d-flex user-additional-info">
             {userData.additionalInfo?.url && (
               <img
                 src={userData.additionalInfo.url}
                 alt={userData.name}
-                style={{ maxWidth: "20%", height: "20%" }}
+                className="user-image"
               />
             )}
-            <p className="mt-3">ID Blockchain: {userData.uuid}</p>
-            <p>Nama : {userData.name}</p>
-            <p>Email : {userData.email}</p>
-            <p>Nomor HP : {userData.additionalInfo.nohp}</p>
-            <p>Alamat : {userData.additionalInfo.alamat}</p>
-
-            {user && userData.role === "petani" && (
-              <Link
-                to={`/profile-petani/edit/${userData.uuid}`}
-                className="btn btn-info mt-2 button-detail"
-              >
-                Edit Profile {userData.role}
-              </Link>
-            )}
-            {user && userData.role === "pabrik" && (
-              <Link
-                to={`/profile-pabrik/edit/${userData.uuid}`}
-                className="btn btn-info mt-2 button-detail"
-              >
-                Edit Profile {userData.role}
-              </Link>
-            )}
-            {user && userData.role === "logistik" && (
-              <Link
-                to={`/profile-logistik/edit/${userData.uuid}`}
-                className="btn btn-info mt-2 button-detail"
-              >
-                Edit Profile {userData.role}
-              </Link>
-            )}
-          </span>
-        ) : (
-          <p>Loading user details...</p>
-        )}
-      </div>
+          </div>
+          <div className="user-data col-8 d-flex">
+          <table className="user-data-table">
+              <tbody>
+                <tr>
+                  <th>ID Blockchain</th>
+                  <td>:</td>
+                  <td>{userData.uuid}</td>
+                </tr>
+                <tr>
+                  <th>Nama</th>
+                  <td>:</td>
+                  <td>{userData.name}</td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td>:</td>
+                  <td>{userData.email}</td>
+                </tr>
+                <tr>
+                  <th>Nomor HP</th>
+                  <td>:</td>
+                  <td>{userData.additionalInfo.nohp}</td>
+                </tr>
+                <tr>
+                  <th>Alamat</th>
+                  <td>:</td>
+                  <td>{userData.additionalInfo.alamat}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : (
+        <p>Loading user details...</p>
+      )}
+    </div>
     </div>
   );
 };

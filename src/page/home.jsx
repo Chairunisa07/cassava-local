@@ -68,7 +68,7 @@ const Home = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link underline" href="#">
+              <a className="nav-link underline" href="/traceability">
                 TRACEABILITY
               </a>
             </li>
@@ -305,9 +305,9 @@ const Home = () => {
           </div>
           <div className="row">
             <div className="col-md">
-              <button type="button" className="btn btn-outline-light">
+              <a href="/traceability" className="btn btn-outline-light">
                 Trace Produk Anda
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -490,12 +490,12 @@ const Home = () => {
               </div>
               <div className="text-stakeholder">
                 <h3>
-                  <strong>Kebun</strong>
+                  <strong>Petani</strong>
                 </h3>
               </div>
               <div className="p-stakeholder">
                 <p>
-                  Stakeholder kebun bagian pertama dalam proses ketertelusuran
+                  Stakeholder petani bagian pertama dalam proses ketertelusuran
                   bahan baku singkong. Mulai dari memanen Singkong hingga
                   mengirim produk tersebut ke stakeholder logistik
                 </p>

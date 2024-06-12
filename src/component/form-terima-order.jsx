@@ -20,7 +20,7 @@ const FormTerimaOrder = () => {
     const getProductById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/${id}`
+          `/api/products/${id}`
         );
         setNamaPerusahaan(response.data.namaPerusahaan);
         setNoHpPerusahaan(response.data.noHpPerusahaan);
@@ -40,7 +40,7 @@ const FormTerimaOrder = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/products/${id}`, {
+      await axios.patch(`/api/products/${id}`, {
         namaPerusahaan: namaPerusahaan,
         noHpPerusahaan: noHpPerusahaan,
         statusOrder: statusOrder,
@@ -48,7 +48,7 @@ const FormTerimaOrder = () => {
         noHpLogistik: noHpLogistik,
         platnoLogistik: platnoLogistik,
       });
-      navigate("/products");
+      navigate("/panen");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);

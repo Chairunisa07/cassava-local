@@ -29,7 +29,7 @@ const LogistikListEdit = () => {
     const fetchLogistikData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/logistik/${id}`
+          `/api/logistik/${id}`
         );
         const data = response.data;
         setTanggalWaktuPengiriman(data.tanggalWaktuPengiriman.split(".")[0]);
@@ -56,7 +56,7 @@ const LogistikListEdit = () => {
   const updateLogistikData = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/logistik/${id}`, {
+      await axios.put(`/api/logistik/${id}`, {
         tanggalWaktuPengiriman,
         asal,
         tujuan,

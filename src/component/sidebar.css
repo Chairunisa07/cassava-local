@@ -46,13 +46,56 @@
   width: 100%;
 }
 
-.menu-list .active a {
-  background-color: #007bff; /* Warna latar belakang saat item aktif */
-  color: #fff; /* Warna teks saat item aktif */
-}
-
 .menu-label {
   margin-top: 10px;
   font-weight: bold;
   color: #4d4b4b;
+}
+
+/*navbar*/
+.navbar-user {
+  padding: 8px 16px;
+  background-color: #fff;
+}
+
+.navbar-user-img {
+  max-width: 250px;
+}
+
+.navbar-user .navbar-toggler {
+  background-color: #a0a2a5; 
+  border: none; 
+}
+
+.navbar-user .navbar-toggler:hover,
+.navbar-user .navbar-toggler:focus {
+  background-color: #4d4b4b;
+  outline: none; 
+}
+.navbar-user-icon {
+  color: rgb(0, 0, 0);
+}
+
+.navbar-user .nav-link {
+  color: #6c757d; 
+  text-decoration: none;
+}
+
+.navbar-user .nav-link:hover {
+  color: #f1821e; 
+  text-decoration: none;
+}
+.navbar-user .nav-link.active {
+  color: #ff6600; 
+}
+
+.navbar-user .dropdown-item {
+  color: #6c757d;
+}
+.navbar-user .dropdown-title {
+  color: #6c757d; /* Atur warna teks untuk dropdown title */
+}
+.navbar-user .dropdown-item:hover {
+  color: #f1821e; 
+  background-color: transparent;
 }

@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <div className="content">
       <section id="header">
-        <div className="well py-3">
+        <div className="header-well py-3">
           <img
             src={logo}
             alt="Logo"

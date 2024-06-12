@@ -4,7 +4,7 @@ import Welcome from "../component/welcome";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
-import NotifikasiOrder from "../component/notifikasiorder";
+import HargaJual from "../component/harga-jual";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <Layout>
       <Welcome />
-      <NotifikasiOrder />
+      <HargaJual />
     </Layout>
   );
 };

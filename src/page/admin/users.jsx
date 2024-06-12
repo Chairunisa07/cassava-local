@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Layout from "../../page/layout";
+import Layout from "../layout";
 import UserList from "../../component/userlist";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

@@ -19,7 +19,7 @@ const LogistikList = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/users/${user.uuid}`
+            `/api/users/${user.uuid}`
           );
           setUserAuth(response.data);
         } catch (error) {
@@ -34,7 +34,7 @@ const LogistikList = () => {
     if (user?.uuid) {
       const fetchData = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/logistik`);
+          const response = await axios.get(`/api/logistik`);
           setUserData(response.data);
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -61,7 +61,7 @@ const LogistikList = () => {
     // Tampilkan dialog konfirmasi penghapusan
     if (window.confirm("Apakah Anda yakin ingin menghapus data ini?")) {
       try {
-        await axios.delete(`http://localhost:5000/logistik/${id}`);
+        await axios.delete(`/api/logistik/${id}`);
         // Filter out the deleted data from the userData state
         const updatedUserData = userData.filter((data) => data.id !== id);
         setUserData(updatedUserData); // Set the state with the filtered data
@@ -82,75 +82,143 @@ const LogistikList = () => {
           {" "}
           <strong>Data Logistik</strong>
         </h2>
-        <Link to="/data-logistik/add" className="btn btn-primary mb-2">
-          Add New
-        </Link>
+        {user && (user.role === "admin" || user.role === "logistik") && (
+          <Link to="/data-logistik/add" className="btn btn-primary mb-2">
+            Add Data Logistik
+          </Link>
+        )}
+
         {userData.length ? (
           userData.map((data, index) => (
             <div key={index}>
               <div className="card ps-4 pt-4 pb-4 mb-4">
-                {user && userAuth?.role === "admin" && (
-                  <div>
-                    <h3>
-                      <b>Nama : {data.user.name}</b>
-                    </h3>
-                    <h3>
-                      <b>Email : {data.user.email}</b>
-                    </h3>
-                  </div>
-                )}
+                {user &&
+                  (user.role === "admin" || user.role === "perusahaan") && (
+                    <div className="col-8 d-flex">
+                      <table>
+                        <tbody>
+                          <tr className="h4">
+                            <th>Nama Logistik</th>
+                            <td>:</td>
+                            <td>{user.name}</td>
+                          </tr>
+                          <tr className="h4">
+                            <th>Nama Pabrik</th>
+                            <td>:</td>
+                            <td>{user.email}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
 
                 <p className="poin">
                   {" "}
                   <b>1. Detail Pengiriman</b>
                 </p>
                 <div className="subpoin">
-                  <p>ID Blockchain : {data.idPengiriman}</p>
-                  <p>
-                    Tanggal Waktu Pengiriman : {data.tanggalWaktuPengiriman}
-                  </p>
-                  <p>Asal : {data.asal}</p>
-                  <p>Tujuan : {data.tujuan}</p>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>ID Blockchain</td>
+                        <td>:</td>
+                        <td>{data.idPengiriman}</td>
+                      </tr>
+                      <tr>
+                        <td>Tanggal Waktu Pengiriman</td>
+                        <td>:</td>
+                        <td>{data.tanggalWaktuPengiriman}</td>
+                      </tr>
+                      <tr>
+                        <td>Asal</td>
+                        <td>:</td>
+                        <td>{data.asal}</td>
+                      </tr>
+                      <tr>
+                        <td>Tujuan</td>
+                        <td>:</td>
+                        <td>{data.tujuan}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
                 <p className="poin mt-3">
                   <b>2. Detail Kendaraan</b>
                 </p>
                 <div className="subpoin">
-                  <p>Estimasi Waktu Tiba: {data.estimasiWaktuTiba}</p>
-                  <p>Nomor Polisi Kendaraan : {data.nomorPolisiKendaraan}</p>
-                  <p>Jenis Kendaraan : {data.jenisKendaraan}</p>
-                  <p>Kapasitas Angkut : {data.kapasitasAngkut} kg</p>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>Estimasi Waktu Tiba</td>
+                        <td>:</td>
+                        <td>{data.estimasiWaktuTiba}</td>
+                      </tr>
+                      <tr>
+                        <td>Nomor Polisi Kendaraan</td>
+                        <td>:</td>
+                        <td>{data.nomorPolisiKendaraan}</td>
+                      </tr>
+                      <tr>
+                        <td>Jenis Kendaraan</td>
+                        <td>:</td>
+                        <td>{data.jenisKendaraan}</td>
+                      </tr>
+                      <tr>
+                        <td>Kapasitas Angkut</td>
+                        <td>:</td>
+                        <td>{data.kapasitasAngkut} ton</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
-                <p className="poin mt-3"><b>3.Biaya dan Efisiensi</b></p>
+                <p className="poin mt-3">
+                  <b>3.Efisiensi</b>
+                </p>
                 <div className="subpoin">
-                  <p>Biaya Transportasi : Rp {data.biayaTransportasi}</p>
                   <p>Catatan Efisiensi Rute : {data.catatanEfisiensiRute}</p>
                 </div>
 
-                <p className="poin mt-3"><b>4. Feedback</b></p>
+                <p className="poin mt-3">
+                  <b>4. Feedback</b>
+                </p>
                 <div className="subpoin">
-                  <p>Kondisi Pengiriman : {data.kondisiPengiriman}</p>
-                  <p>Catatan Dari Penerima : {data.catatanDariPenerima}</p>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>Kondisi Pengiriman</td>
+                        <td>:</td>
+                        <td>{data.kondisiPengiriman}</td>
+                      </tr>
+                      <tr>
+                        <td>Catatan Dari Penerima</td>
+                        <td>:</td>
+                        <td>{data.catatanDariPenerima}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
-                {user && userAuth?.role === "admin" && (
-                  <div className="mt-3">
-                    <Link
-                      to={`/data-logistik/edit/${data.id}`}
-                      className="btn btn-info button-detail"
-                    >
-                      Edit
-                    </Link>
+                <div className="mt-3">
+                  {user &&
+                    (user.role === "admin" || user.role === "logistik") && (
+                      <Link
+                        to={`/data-logistik/edit/${data.id}`}
+                        className="btn btn-info button-detail"
+                      >
+                        Edit
+                      </Link>
+                    )}
+                  {user.role === "admin" && (
                     <button
                       onClick={() => deleteProduct(data.id)}
                       className="btn btn-danger button-detail ms-2"
                     >
                       Delete
                     </button>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           ))

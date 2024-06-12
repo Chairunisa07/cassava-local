@@ -14,7 +14,7 @@ const Welcome = () => {
         try {
           // Lakukan permintaan GET ke endpoint
           const response = await axios.get(
-            `http://localhost:5000/users/${user.uuid}`
+            `/api/users/${user.uuid}`
           );
           console.log(response.data);
           // Simpan data ke state
@@ -46,9 +46,9 @@ const Welcome = () => {
       )}
 
       <div className="welcome">
-        <p>Role Anda: {user && user.role}</p>
-        <p>ID Blokchain Anda: {user && user.uuid}</p>
-        <p>Email Anda: {user && user.email}</p>
+        <p>Role : {user && user.role}</p>
+        <p>ID Blokchain : {user && user.uuid}</p>
+        <p>Email : {user && user.email}</p>
       </div>
     </div>
   );

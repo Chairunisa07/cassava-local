@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import Layout from "../layout";
-import FormEditUser from "../../component/form-edit-user";
+import Layout from "./layout";
+import FormUpdateOrder from "../component/form-update-order";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../../features/authSlice";
+import { getMe } from "../features/authSlice";
 
-const EditUser = () => {
+const UpdateOrder = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -18,15 +18,12 @@ const EditUser = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role !== "admin") {
-      navigate("/dashboard");
-    }
-  }, [isError, user, navigate]);
+  }, [isError, navigate]);
   return (
     <Layout>
-      <FormEditUser />
+      <FormUpdateOrder />
     </Layout>
   );
 };
 
-export default EditUser;
+export default UpdateOrder;

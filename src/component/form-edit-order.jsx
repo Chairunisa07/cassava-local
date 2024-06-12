@@ -13,7 +13,7 @@ const FormEditOrder = () => {
     const getProductById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/${id}`
+          `/api/products/${id}`
         );
         setName(response.data.name);
         setPrice(response.data.price);
@@ -29,7 +29,7 @@ const FormEditOrder = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/products/${id}`, {
+      await axios.patch(`/api/products/${id}`, {
         name: name,
         price: price,
       });

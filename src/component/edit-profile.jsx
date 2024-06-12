@@ -16,7 +16,7 @@ const EditProfile = () => {
     useEffect(() => {
         const getUserById = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/users/${id}`);
+                const response = await axios.get(`/api/users/${id}`);
                 setName(response.data.name);
                 setEmail(response.data.email);
                 setRole(response.data.role);
@@ -45,7 +45,7 @@ const EditProfile = () => {
                 formData.append('foto', foto);
             }
 
-            await axios.patch(`http://localhost:5000/users/${id}`, formData, {
+            await axios.patch(`/api/users/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

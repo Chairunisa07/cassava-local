@@ -23,9 +23,6 @@ const PetaniEditLahan = () => {
   const [produksiaktual, setProduksiAktual] = useState("");
   const [jenispupuk, setJenisPupuk] = useState("");
   const [jumlahpupuk, setJumlahPupuk] = useState("");
-  const [hargajual, setHargaJual] = useState("");
-  const [totalpendapatan, setTotalPendapatan] = useState("");
-  const [pendapatanbersih, setPendapatanBersih] = useState("");
   const [catatantambahan, setCatatanTambahan] = useState("");
   const [msg, setMsg] = useState("");
 
@@ -33,7 +30,7 @@ const PetaniEditLahan = () => {
   useEffect(() => {
     const fetchDataLahan = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/petani/${id}`);
+        const response = await axios.get(`/api/petani/${id}`);
         const data = response.data;
         setLokasiLahan(data.lokasilahan);
         setLuasLahan(data.luaslahan);
@@ -45,9 +42,6 @@ const PetaniEditLahan = () => {
         setProduksiAktual(data.produksiaktual);
         setJenisPupuk(data.jenispupuk);
         setJumlahPupuk(data.jumlahpupuk);
-        setHargaJual(data.hargajual);
-        setTotalPendapatan(data.totalpendapatan);
-        setPendapatanBersih(data.pendapatanbersih);
         setCatatanTambahan(data.catatantambahan);
       } catch (error) {
         setMsg(
@@ -63,7 +57,7 @@ const PetaniEditLahan = () => {
   const updateDataLahan = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/petani/${id}`, {
+      await axios.put(`/api/petani/${id}`, {
         lokasilahan,
         luaslahan,
         statuskepemilikanlahan,
@@ -74,9 +68,6 @@ const PetaniEditLahan = () => {
         produksiaktual,
         jenispupuk,
         jumlahpupuk,
-        hargajual,
-        totalpendapatan,
-        pendapatanbersih,
         catatantambahan,
       });
       navigate("/datalahan");
@@ -193,15 +184,22 @@ const PetaniEditLahan = () => {
                   <div className="field mb-2">
                     <label className="label">Varietas/Jenis Singkong</label>
                     <div className="control">
-                      <input
-                        type="text"
-                        className="input"
-                        value={varietassingkong}
-                        onChange={(e) => setVarietasSingkong(e.target.value)}
-                        placeholder="Varietas Singkong"
-                      />
+                      <div className="select">
+                        <select
+                          value={varietassingkong}
+                          onChange={(e) => setVarietasSingkong(e.target.value)}
+                        >
+                          <option value="">Pilih Grade Singkong</option>
+                          <option value="A">Grade A</option>
+                          <option value="B">Grade B</option>
+                          <option value="C">Grade C</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="column">
                   {/* Estimasi Produksi */}
                   <div className="field mb-2">
                     <label className="label">Estimasi Produksi</label>
@@ -215,9 +213,6 @@ const PetaniEditLahan = () => {
                       />
                     </div>
                   </div>
-                </div>
-
-                <div className="column">
                   {/* Produksi Aktual */}
                   <div className="field mb-2">
                     <label className="label">Produksi Aktual</label>
@@ -257,45 +252,6 @@ const PetaniEditLahan = () => {
                       />
                     </div>
                   </div>
-                  {/* Harga Jual */}
-                  <div className="field mb-2">
-                    <label className="label">Harga Jual</label>
-                    <div className="control">
-                      <input
-                        type="text"
-                        className="input"
-                        value={hargajual}
-                        onChange={(e) => setHargaJual(e.target.value)}
-                        placeholder="Harga Jual"
-                      />
-                    </div>
-                  </div>
-                  {/* Total Pendapatan */}
-                  <div className="field mb-2">
-                    <label className="label">Total Pendapatan</label>
-                    <div className="control">
-                      <input
-                        type="text"
-                        className="input"
-                        value={totalpendapatan}
-                        onChange={(e) => setTotalPendapatan(e.target.value)}
-                        placeholder="Total Pendapatan"
-                      />
-                    </div>
-                  </div>
-                  {/* Pendapatan Bersih */}
-                  <div className="field mb-2">
-                    <label className="label">Pendapatan Bersih</label>
-                    <div className="control">
-                      <input
-                        type="text"
-                        className="input"
-                        value={pendapatanbersih}
-                        onChange={(e) => setPendapatanBersih(e.target.value)}
-                        placeholder="Pendapatan Bersih"
-                      />
-                    </div>
-                  </div>
                   {/* Catatan Tambahan */}
                   <div className="field mb-2">
                     <label className="label">Catatan Tambahan</label>
@@ -314,7 +270,10 @@ const PetaniEditLahan = () => {
 
               <div className="field mt-3">
                 <div className="control">
-                  <button type="submit" className="btn btn-success button-detail">
+                  <button
+                    type="submit"
+                    className="btn btn-success button-detail"
+                  >
                     Update
                   </button>
                 </div>

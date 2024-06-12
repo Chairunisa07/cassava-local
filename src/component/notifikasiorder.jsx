@@ -6,16 +6,19 @@ import "./component.css"
 
 const NotifikasiOrder = () => {
   const { user } = useSelector((state) => state.auth);
+  console.log(user);
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts();
+      getProducts();
   }, []);
 
   const getProducts = async () => {
-    const response = await axios.get("http://localhost:5000/products");
-    setProducts(response.data);
+      const response = await axios.get(`/api/products`);
+      setProducts(response.data);
   };
+
 
   return (
     <div>
@@ -29,6 +32,7 @@ const NotifikasiOrder = () => {
             <th>No</th>
             <th>Tanggal Panen</th>
             <th>Status Order</th>
+            <th>Varietas Singkong</th>
             <th>Nama Perusahaan</th>
             <th>No HP Perusahaan</th>
             <th>Nama Logistik</th>
@@ -43,6 +47,7 @@ const NotifikasiOrder = () => {
               <td>{index + 1}</td>
               <td>{product.tanggalPemanenan}</td>
               <td>{product.statusOrder}</td>
+              <td>{product.varietasSingkong}</td>
               <td>{product.namaPerusahaan}</td>
               <td>{product.noHpPerusahaan}</td>
               <td>{product.namaLogistik}</td>

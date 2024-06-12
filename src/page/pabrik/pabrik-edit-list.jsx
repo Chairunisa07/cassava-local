@@ -25,7 +25,7 @@ const PabrikEditList = () => {
     useEffect(() => {
         const fetchPabrikData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/pabrik/${id}`);
+                const response = await axios.get(`/api/pabrik/${id}`);
                 const data = response.data;
                 setTanggalPenerimaan(data.tanggalPenerimaan);
                 setBeratTotalDiterima(data.beratTotalDiterima.toString());
@@ -47,7 +47,7 @@ const PabrikEditList = () => {
     const updatePabrikData = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/pabrik/${id}`, {
+            await axios.put(`/api/pabrik/${id}`, {
                 tanggalPenerimaan,
                 beratTotalDiterima: parseInt(beratTotalDiterima),
                 evaluasiKualitas,
